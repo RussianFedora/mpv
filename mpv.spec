@@ -42,7 +42,7 @@ BuildRequires:  pkgconfig(rubberband)
 BuildRequires:  pkgconfig(smbclient)
 BuildRequires:  pkgconfig(uchardet) >= 0.0.5
 BuildRequires:  pkgconfig(vdpau)
-BuildRequires:  waf >= 1.8.17
+BuildRequires:  waf >= 1.8.20
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-egl)
@@ -55,10 +55,12 @@ BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zlib)
+BuildRequires:  python-docutils
 BuildRequires:  perl(Math::BigInt)
 BuildRequires:  perl(Math::BigRat)
-BuildRequires:  python-docutils
-
+%if 0%{?fedora} >= 24
+BuildRequires:  perl(Encode)
+%endif
 Requires:       hicolor-icon-theme
 
 %description
