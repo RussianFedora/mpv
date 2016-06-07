@@ -4,7 +4,7 @@
 Name:           mpv
 Epoch:          1
 Version:        0.17.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A free, open source, and cross-platform media player
 
 License:        GPLv2+
@@ -184,8 +184,8 @@ waf install --destdir=%{buildroot}
 %{__rm} -r %{buildroot}%{_docdir}/%{name}
 
 # install bash completion script
-mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
-install -m644 %{SOURCE1} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d/
+install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -216,7 +216,7 @@ fi
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/*/apps/%{name}.svg
 %{_datadir}/icons/hicolor/*/apps/%{name}-symbolic.svg
-%{_datadir}/bash-completion/completions/%{name}
+%{_sysconfdir}/bash_completion.d/%{name}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/encoding-profiles.conf
 %{_mandir}/man1/%{name}.1.*
@@ -235,6 +235,9 @@ fi
 %{_zshdir}/_%{name}
 
 %changelog
+* Tue Jun  7 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-3.R
+- put completion to /etc/bash_completion.d/
+
 * Tue Jun  7 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-2.R
 - added bash completion script
 
