@@ -4,12 +4,13 @@
 Name:           mpv
 Epoch:          1
 Version:        0.17.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A free, open source, and cross-platform media player
 
 License:        GPLv2+
 URL:            https://mpv.io/
 Source0:        https://github.com/%{name}-player/%{name}/archive/v%{version}.tar.gz
+Source1:        mpv-completion
 # Fix rpmlint incorrect-fsf-address
 Patch0:         %{name}-incorrect-fsf-address.patch
 # Main dependencies
@@ -182,6 +183,10 @@ waf install --destdir=%{buildroot}
 
 %{__rm} -r %{buildroot}%{_docdir}/%{name}
 
+# install bash completion script
+mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
+install -m644 %{SOURCE1} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
@@ -211,6 +216,7 @@ fi
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/*/apps/%{name}.svg
 %{_datadir}/icons/hicolor/*/apps/%{name}-symbolic.svg
+%{_datadir}/bash-completion/completions/%{name}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/encoding-profiles.conf
 %{_mandir}/man1/%{name}.1.*
@@ -229,6 +235,9 @@ fi
 %{_zshdir}/_%{name}
 
 %changelog
+* Tue Jun  7 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-2.R
+- added bash completion script
+
 * Mon Apr 11 2016 Maxim Orlov <murmansksity@gmail.com> - 1:0.17.0-1.R
 - Update to 0.17.0
 
