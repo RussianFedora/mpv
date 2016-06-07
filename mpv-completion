@@ -1,4 +1,3 @@
-#!/bin/bash
 # mpv(1) completion
 
 _mpv(){
