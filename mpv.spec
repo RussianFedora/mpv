@@ -4,7 +4,7 @@
 Name:           mpv
 Epoch:          1
 Version:        0.17.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A free, open source, and cross-platform media player
 
 License:        GPLv2+
@@ -235,6 +235,10 @@ fi
 %{_zshdir}/_%{name}
 
 %changelog
+* Tue Jun 13 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-4.R
+- rebuilt against new ffmpeg
+- drop shebang in bash completion script
+
 * Tue Jun  7 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-3.R
 - put completion to /etc/bash_completion.d/
 
