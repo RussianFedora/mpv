@@ -10,8 +10,8 @@ Summary:        A free, open source, and cross-platform media player
 License:        GPLv2+
 URL:            https://mpv.io/
 Source0:        https://github.com/%{name}-player/%{name}/archive/v%{version}.tar.gz
-Source1:        mpv-completion
-# Fix rpmlint incorrect-fsf-address
+Source1:        %{name}-completion
+# Fix rpmlint E: incorrect-fsf-address
 Patch0:         %{name}-incorrect-fsf-address.patch
 # Main dependencies
 BuildRequires:  pkgconfig(alsa)
@@ -69,14 +69,14 @@ Mpv is a fork of mplayer2 and MPlayer. It shares some features with the former
 projects while introducing many more.
 
 %package        libs
-Summary:        MPV shared library
+Summary:        MPV client library
 Obsoletes:      libmpv
 
 %description    libs
 %{summary}.
 
 %package        libs-devel
-Summary:        Development files for MPV library
+Summary:        Header files for MPV client library
 Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %description    libs-devel
@@ -179,13 +179,13 @@ waf build %{?_smp_mflags} -v
 %install
 waf install --destdir=%{buildroot}
 
-%{__mv} %{buildroot}%{_docdir}/%{name}/%{name}.html .
-
-%{__rm} -r %{buildroot}%{_docdir}/%{name}
-
 # install bash completion script
 mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d/
 install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+
+mv %{buildroot}%{_docdir}/%{name}/%{name}.html .
+
+rm -r %{buildroot}%{_docdir}/%{name}
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -223,7 +223,6 @@ fi
 
 %files libs
 %license LICENSE Copyright
-%doc README.md
 %{_libdir}/lib%{name}.so.*
 
 %files libs-devel
