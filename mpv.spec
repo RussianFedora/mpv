@@ -243,7 +243,7 @@ fi
 * Sat Jun 25 2016 Maxim Orlov <murmansksity@gmail.com> - 1:0.18.0-1.R
 - Update to 0.18.0
 
-* Tue Jun 13 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-4.R
+* Mon Jun 13 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1:0.17.0-4.R
 - rebuilt against new ffmpeg
 - drop shebang in bash completion script
 
